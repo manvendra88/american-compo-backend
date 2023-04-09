@@ -3,7 +3,6 @@ from .models import case_table
 from django.views import View
 from django.http import JsonResponse
 
-# Create your views here.
 class CaseView(View):
     def get(self, request):
         try:

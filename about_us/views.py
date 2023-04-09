@@ -3,7 +3,6 @@ from django.views import View
 from .models import about_us_table
 from django.http import JsonResponse
 
-# Create your views here.
 class ContactUsView(View):
     def get(self, request):
         try:
