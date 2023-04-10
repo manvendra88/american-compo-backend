@@ -10,6 +10,7 @@ class ActiveLawsuitsView(View):
                 lawsuit = active_law_table.objects.get(name=request.GET.get('name', ''))
                 return JsonResponse(data={
                     "name": lawsuit.name,
+                    "heading": lawsuit.heading,
                     "imageLink": lawsuit.banner_image.url,
                     "text": lawsuit.text
                 }, status=200)
