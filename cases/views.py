@@ -1,16 +1,16 @@
 from django.shortcuts import render
-from .models import case_table
 from django.views import View
 from django.http import JsonResponse
+from active_lawsuits.models import active_law_table
 
 class CaseView(View):
     def get(self, request):
         try:
             final_data = {}
-            cases = case_table.objects.all()
+            cases = active_law_table.objects.all()
             caseList = []
             for case in cases:
-                caseList.append(case.case_name)
+                caseList.append(case.name)
             final_data.update({"caseList": caseList})
             return JsonResponse(data=final_data, status=200)
         except:
