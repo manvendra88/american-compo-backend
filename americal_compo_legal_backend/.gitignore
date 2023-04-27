@@ -97,9 +97,8 @@ celerybeat-schedule.*
 *.sage.py 
 
 # Environments 
-.env 
-.venv 
-env/ 
+
+.venv  
 venv/ 
 ENV/ 
 env.bak/ 
@@ -109,7 +108,8 @@ venv.bak/
 /site 
 
 # mypy 
-.mypy_cache/ 
+.mypy_cache/
+.pyc
 
 # Sublime Text # 
 *.tmlanguage.cache 
