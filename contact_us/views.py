@@ -30,7 +30,7 @@ class ContactUsView(View):
 
                 # from_email = 'info@americancompolegal.com',
                 from_email = 'connect.toughtech@gmail.com',
-                recipient_list = ['connect.toughtech@gmail.com'],
+                recipient_list = ['connect.toughtech@gmail.com', 'manuspanwar@gmail.com'],
                 fail_silently=False,
             ) 
 
