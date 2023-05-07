@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from django.http import JsonResponse
 from .models import contact_us_table
+from django.core.mail import send_mail
 
 class ContactUsView(View):
     def get(self, request):
@@ -16,6 +17,38 @@ class ContactUsView(View):
                 message = request.GET.get("message", ''),
             )
             contact_info.save()
+
+            send_mail(
+                subject = 'Greetings from American Compo Legal',
+                message = 'Dear'+ request.GET.get("fname", '') +', \n\n' + 
+                'Thank you for reaching out to Amercian Compo Legal. Your response has successfully submitted. Our representative will reach out to you to help you out with your case. '+
+                '\n\nDetails :'+
+                '\n\nName:'+ request.GET.get("fname", '')+ ' ' +request.GET.get("lname", '')+
+                '\n\nEmail :'+  request.GET.get("email", '')+
+                '\n\nMessage : '+request.GET.get("message", '')+
+                '\n\nThanks',
+
+                # from_email = 'info@americancompolegal.com',
+                from_email = 'connect.toughtech@gmail.com',
+                recipient_list = ['connect.toughtech@gmail.com'],
+                fail_silently=False,
+            ) 
+
+            send_mail(
+                subject = 'New Lead Created on ACL',
+                message = 'Dear Team NMS, \n\n' + 
+                'A new lead has been created through americancompolegal.com. Kindly view the details on the admin panel.'+
+                '\n\nDetails :'+
+                '\n\nName:'+ request.GET.get("fname", '')+ ' ' +request.GET.get("lname", '')+
+                '\n\nEmail : '+ request.GET.get("email", '')+
+                '\n\nMessage : '+request.GET.get("message", '')+
+                '\n\nThanks',
+
+                # from_email = 'info@americancompolegal.com',
+                from_email = 'connect.toughtech@gmail.com',
+                recipient_list = ['connect.toughtech@gmail.com'],
+                fail_silently=False,
+                )
             return JsonResponse(data={"message": "saved contact information"}, status=200)
         except:
             return JsonResponse(data={"message": "error while saving contact information"}, status=402)
