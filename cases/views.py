@@ -3,6 +3,7 @@ from django.views import View
 from django.http import JsonResponse
 from active_lawsuits.models import active_law_table
 
+# A small commit
 class CaseView(View):
     def get(self, request):
         try:
